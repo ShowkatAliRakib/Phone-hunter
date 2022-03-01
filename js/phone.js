@@ -13,15 +13,15 @@ const searchbtn = () => {
 }
 
 const phoneDisplay = (phones) => {
-    console.log(phones);
+    // console.log(phones);
 
     for (const phone of phones) {
-        console.log(phone.brand);
+        // console.log(phone);
 
         const div = document.createElement("div");
         div.classList.add("cols-1")
         div.classList.add("col-lg-4")
-        div.classList.add("cols-md-4")
+        div.classList.add("cols-md-6")
 
 
 
@@ -30,12 +30,21 @@ const phoneDisplay = (phones) => {
                 <div class="card" style="width: 18rem;">
                     <img src="${phone.image}" class="card-img-top " alt="...">
                     <div class="card-body">
-                        <h5 class="card-title"> Name:${phone.phone_name}</h5>
-                        <p class="card-text"> Brand:${phone.brand}</p>
-                        <button class="btn btn-primary">See Details</button>
+                        <h5 class="card-title"> Name: ${phone.phone_name}</h5>
+                        <p class="card-text"> <h5>Brand: ${phone.brand}</h5> </p>
+                        <button onclick="details()" class="btn btn-primary">See Details</button>
                     </div>
                 </div>
         `;
         main.appendChild(div)
     }
 };
+
+
+const details = () => {
+
+    fetch(`https://openapi.programming-hero.com/api/phone/apple_iphone_13_pro_max-11089`)
+        .then(res => res.json())
+        .then(data => console.log(data))
+
+}
