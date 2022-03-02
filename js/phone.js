@@ -29,7 +29,7 @@ const phoneDisplay = (phones) => {
                     <div class="card-body">
                         <h5 class="card-title"> Name: ${phone.phone_name}</h5>
                         <p class="card-text"> <h5>Brand: ${phone.brand}</h5> </p>
-                        <button onclick="details('${phone.phone_name}')" class="btn btn-primary">See Details</button>
+                        <button onclick="details('${phone.slug}')" class="btn btn-primary">See Details</button>
                     </div>
                 </div>
         `;
@@ -38,20 +38,32 @@ const phoneDisplay = (phones) => {
 };
 
 
-const details = (info) => {
+const details = (phoneId) => {
+    // console.log(phoneId);
 
-    fetch(`https://openapi.programming-hero.com/api/phones?search=${info}`)
+    fetch(` https://openapi.programming-hero.com/api/phone/${phoneId}`)
         .then(res => res.json())
-        .then(data => console.log(data.data[0]))
+        .then(data => setDetails(data.data))
 
 }
 
 
-// const setDetails = () => {
-//     const detailsContainer = document.getElementById("details-container")
-//     const div = document.createElement("div");
-//     div.innerHTML = `
+const setDetails = (phone) => {
+    console.log(phone);
+    const detailsContainer = document.getElementById("details-container")
+    const div = document.createElement("div");
 
-//         `;
-//     detailsContainer.appendChild(div)
-// };
+    div.innerHTML = `
+        <div class="col mt-3 w-50">
+                <div class="card" style="width: 18rem;">
+                    <img src="${phone.image}" class="card-img-top " alt="...">
+                    <div class="">
+                        <h5 class="card-title"> Name: ${phone.name}</h5>
+                        <p class="card-text"> <h5>Brand: ${phone.brand}</h5> </p>
+                        <p>storage: ${phone.mainFeatures.storage}</p>
+                      
+                    </div>
+                </div>
+        `;
+    detailsContainer.appendChild(div)
+};
