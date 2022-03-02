@@ -101,6 +101,21 @@ const setDetails = (phone) => {
         <td>${phone.mainFeatures.sensors}</td>
 
     </tr>
+    <tr>
+        <th scope="row">Others:</th>
+        <td><p>
+           WLAN: (${phone.others.WLAN?phone.others.WLAN:'no found'})<br>
+      Bluetooth: (${phone.others.WLAN?phone.others.Bluetooth:'no found'})<br>
+            GPS: (${phone.others.WLAN?phone.others.GPS:'no found'})<br>
+            NFC: (${phone.others.WLAN?phone.others.NFC:'no found'})<br>
+          Radio: (${phone.others.WLAN?phone.others.Radio:'no found'})<br>
+          USB: (${phone.others.WLAN?phone.others.USB:'no found'})<br>
+     
+           
+        </p>
+        </td>
+
+    </tr>
    
 </tbody>
 </table>
