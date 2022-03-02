@@ -54,13 +54,56 @@ const setDetails = (phone) => {
     const div = document.createElement("div");
 
     div.innerHTML = `
-        <div class="col mt-3 w-50">
-                <div class="card" style="width: 18rem;">
-                    <img src="${phone.image}" class="card-img-top " alt="...">
-                    <div class="">
-                        <h5 class="card-title"> Name: ${phone.name}</h5>
+        <div class="col mt-3 ">
+                <div class="card" style="width: 40rem;">
+                    <img src="${phone.image}" class="card-img-top "style="width: 18rem;" alt="...">
+                    <!-- <div class="">
+                        <h5 class="card-title"></h5>
                         <p class="card-text"> <h5>Brand: ${phone.brand}</h5> </p>
-                        <p>storage: ${phone.mainFeatures.storage}</p>
+                        <p>storage: ${phone.mainFeatures.storage}</p> -->
+                        
+                        
+                        <table class="table caption-top ">
+
+<tbody>
+    <tr>
+        <th scope="row"> Name: </th>
+        <td>${phone.name}</td>
+
+    </tr>
+    <tr>
+        <th scope="row">Brand: </th>
+        <td>${phone.brand}</td>
+
+    </tr>
+    <tr>
+        <th scope="row">Storage:</th>
+        <td>${phone.mainFeatures.storage}</td>
+
+    </tr>
+    <tr>
+        <th scope="row">DisplaySize:</th>
+        <td>${phone.mainFeatures.displaySize}</td>
+
+    </tr>
+    <tr>
+        <th scope="row">ChipSet:</th>
+        <td>${phone.mainFeatures.chipSet}</td>
+
+    </tr>
+    <tr>
+        <th scope="row">Memory:</th>
+        <td>${phone.mainFeatures.memory}</td>
+
+    </tr>
+    <tr>
+        <th scope="row">Sensors:</th>
+        <td>${phone.mainFeatures.sensors}</td>
+
+    </tr>
+   
+</tbody>
+</table>
                       
                     </div>
                 </div>
