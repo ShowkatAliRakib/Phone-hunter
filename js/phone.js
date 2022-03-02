@@ -1,20 +1,40 @@
+const main = document.getElementById("main")
 const searchbtn = () => {
-
+    document.getElementById("details-container").innerHTML = "";
+    main.innerHTML = ""
     const inputValue = document.getElementById("input-value").value;
+    const error = document.getElementById("error");
 
-    fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
-        .then(res => res.json())
-        .then(data => phoneDisplay(data.data.slice(0, 20)))
 
+
+
+
+    if (inputValue == " ") {
+        error.innerText = "Please Search Phone";
+
+
+        input.value = " ";
+        main.innerHTML = "";
+    } else {
+        main.innerHTML = "";
+        error.innerHTML = "";
+        fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
+            .then(res => res.json())
+            .then(data => phoneDetails(data.data.slice(0, 20)))
+
+
+        input.value = " ";
+        error.innerHTML = "";
+    }
 
 }
 
-const phoneDisplay = (phones) => {
+const phoneDetails = (phones) => {
     // console.log(phones);
 
     for (const phone of phones) {
         // console.log(phone);
-        const main = document.getElementById("main")
+
         const div = document.createElement("div");
         div.classList.add("cols-1")
         div.classList.add("col-lg-4")
@@ -39,17 +59,23 @@ const phoneDisplay = (phones) => {
 
 
 const details = (phoneId) => {
+
+    const error = document.getElementById("error").innerHTML = "";
+
     // console.log(phoneId);
 
     fetch(` https://openapi.programming-hero.com/api/phone/${phoneId}`)
         .then(res => res.json())
         .then(data => setDetails(data.data))
 
+    document.getElementById("details-container").innerHTML = "";
+
 }
 
 
 const setDetails = (phone) => {
-    console.log(phone);
+    // console.log(phone);
+
     const detailsContainer = document.getElementById("details-container")
     const div = document.createElement("div");
 
@@ -94,6 +120,15 @@ const setDetails = (phone) => {
     <tr>
         <th scope="row">Memory:</th>
         <td>${phone.mainFeatures.memory}</td>
+
+    </tr>
+    <tr>
+        <th scope="row">ReleaseDate:</th>
+        <td>
+            (${phone.mainFeatures.releaseDate?phone.mainFeatures.releaseDate:'no found'})
+
+        </td>
+       
 
     </tr>
     <tr>
